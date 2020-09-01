@@ -217,6 +217,10 @@ list(APPEND BLAKE2_TARGETS blake2s blake2b blake2sp blake2xb blake2bp blake2xs)
 # Add correct subdirectory based on the above selection
 add_subdirectory(${CONFIGURED_DIRECTORY})
 
+foreach(BLAKE2_TARGET IN LISTS BLAKE2_TARGETS)
+	set_property(TARGET ${BLAKE2_TARGET} PROPERTY POSITION_INDEPENDENT_CODE ON)
+endforeach()
+
 # Add tests if a check build
 if( BUILD_TESTING )
 	enable_testing()
